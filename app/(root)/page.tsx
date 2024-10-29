@@ -2,6 +2,8 @@ import SearchForm from "@/components/SearchForm";
 import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 import postImage from "@/public/post.png";
 import profileImage from "@/public/profile.jpg";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({
   searchParams,
@@ -9,73 +11,7 @@ export default async function Home({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-
-  const posts = [
-    {
-      _createdAt: new Date(),
-      views: 55,
-      author: {
-        _id: 1,
-        image: profileImage,
-        name: "MJ",
-      },
-
-      _id: 1,
-      description:
-        "A mobile app that helps users track and reduce their carbo and best ins...",
-      image: postImage,
-      category: "Robots",
-      title: "We Robot",
-    },
-    {
-      _createdAt: new Date(),
-      views: 12,
-      author: {
-        _id: 2,
-        image: profileImage,
-        name: "MJ",
-      },
-
-      _id: 2,
-      description:
-        "A mobile app that helps users track and reduce their carbo and best ins...",
-      image: postImage,
-      category: "Robots",
-      title: "Robots in Space",
-    },
-    {
-      _createdAt: new Date(),
-      views: 30,
-      author: {
-        _id: 3,
-        image: profileImage,
-        name: "MJ",
-      },
-
-      _id: 3,
-      description:
-        "A mobile app that helps users track and reduce their carbo and best ins...",
-      image: postImage,
-      category: "Robots",
-      title: "Robots in House",
-    },
-    {
-      _createdAt: new Date(),
-      views: 15,
-      author: {
-        _id: 4,
-        image: profileImage,
-        name: "MJ",
-      },
-
-      _id: 4,
-      description:
-        "A mobile app that helps users track and reduce their carbo and best ins...",
-      image: postImage,
-      category: "Robots",
-      title: "Robotics in AI",
-    },
-  ];
+  const posts = await client.fetch(STARTUPS_QUERY);
 
   return (
     <>
