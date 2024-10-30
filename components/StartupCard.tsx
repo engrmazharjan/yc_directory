@@ -42,9 +42,11 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
         </div>
         <Link href={`/user/${author?._id}`}>
           <Image
-            // src={author?.image!}
-            src="https://placehold.co/48x48"
-            alt="placeholder"
+            src={
+              author?.image ??
+              "https://media.istockphoto.com/id/1313972145/photo/silhouette-of-thinking-businessman-with-white-background.jpg?s=612x612&w=0&k=20&c=m2iFuzqza7e9xZ27n9aDXZh9tlfJIk2SOG-UOPLMJ8Y="
+            }
+            alt={author?.name || "Author Image"}
             width={48}
             height={48}
             className="rounded-full"
@@ -56,7 +58,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
         <p className="startup-card_desc">{description}</p>
 
         <Image
-          src={image}
+          src={image ?? ""}
           alt="placeholder"
           className="startup-card_img"
           width={400}
