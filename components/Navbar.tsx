@@ -36,14 +36,14 @@ const Navbar = async () => {
               </form>
 
               <Link href={`/user/${session?.id}`}>
-                <span>{session?.user?.name}</span>
-                {/* <Avatar className="size-10">
+                <Avatar className="size-10">
                   <AvatarImage
+                    style={{width:"40px", height:"40px", borderRadius:"50%"}}
                     src={session?.user?.image || ""}
                     alt={session?.user?.name || ""}
                   />
                   <AvatarFallback>AV</AvatarFallback>
-                </Avatar> */}
+                </Avatar>
               </Link>
             </>
           ) : (
